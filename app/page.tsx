@@ -1,95 +1,97 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+
+import React from "react";
+import styled from "styled-components";
+import { pdfToText } from 'pdf-ts';
+import fs from 'fs/promises';
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+  justify-content: center;
+  align-items: center;
+`;
+
+const HeaderArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60px;
+  color: #333;
+  gap: .5rem;
+`;
+
+const Header = styled.h1`
+  font-size: 24px;
+  text-align: center;
+`;
+
+const PreviewText = styled.p`
+  text-align: center;
+  padding: 0 20rem;
+`;
+
+const PoweredBy = styled.div`
+`;
+
+const SubmitArea = styled.div`
+  display: flex;
+  width: 400px;
+  height: 55px;
+  margin-top: 2rem;
+  justify-content: space-between;
+  border-radius: 50px;
+  border: 2px solid #ccc;
+`;
+
+const SubmitInput = styled.input`
+  padding: 0 10px;
+  display: flex;
+  height: 50px;
+  border-radius: 50px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  cursor: pointer;
+`;
+
+const SubmitButton = styled.button`
+  width: 150px;
+  height: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  
+  const handleClick = async () => {
+    const pdf = await fs.readFile('./path/to/file.pdf');
+    // const text = await pdfToText(pdf);
+    console.log("Yes");
+  };
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  return (
+    <PageWrapper>
+      <HeaderArea>
+        <Header>AI-Powered Fraud Detection for Deed Theft</Header>
+        <PreviewText>An intelligent tool that scans PDF documents to detect AI-generated text, helping businesses and legal professionals verify authenticity and prevent fraud in property deeds and real estate transactions.</PreviewText>
+      </HeaderArea>
+      <SubmitArea>
+        <SubmitInput type="file" accept=".pdf" />
+        <SubmitButton onClick={handleClick}>Submit</SubmitButton>
+      </SubmitArea>
+    </PageWrapper>
   );
 }

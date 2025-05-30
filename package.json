@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "next": "15.3.3",
+    "openai": "^5.0.1",
     "pdf-ts": "^0.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "styled-components": "^6.1.18"
+    "styled-components": "^6.1.18",
+    "tesseract.js": "^6.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.17.52",
